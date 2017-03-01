@@ -16,6 +16,7 @@ public class Board {
     private ArrayList<Cell> cells;
 
     public Board() {
+        cells = new ArrayList<>();
         generate();
     }
 
@@ -30,9 +31,10 @@ public class Board {
     public Cell getCell(int x, int y) {
         Cell cell = null;
         int i = 0;
-        while (i < this.cells.size()) {
-            if (this.cells.get(i).getX() == x && this.cells.get(i).getY() == y) {
-                cell = this.cells.get(i);
+        while (i < cells.size()) {
+            if (cells.get(i).getX() == x
+                    && cells.get(i).getY() == y) {
+                cell = cells.get(i);
             }
             i++;
         }
@@ -40,12 +42,23 @@ public class Board {
     }
 
     private void generate() {
-        this.cells = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                this.cells.add(new Cell(j, i));
+                cells.add(new Cell(j, i));
             }
         }
+    }
+
+    public boolean isFull() {
+        int i = 0;
+        boolean full = true;
+        while (i < cells.size() && full) {
+            if (cells.get(i).getMark() != null) {
+                full = false;
+            }
+            i++;
+        }
+        return full;
     }
 
     @Override

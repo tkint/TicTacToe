@@ -5,13 +5,19 @@
  */
 package tictactoe;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import tictactoe.controller.MenuController;
 import tictactoe.model.Game;
 import tictactoe.model.Player;
 
@@ -22,33 +28,33 @@ import tictactoe.model.Player;
 public class TicTacToe extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    public void start(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tictactoe/view/Menu.fxml"));
             
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            Parent parent = (Parent)loader.load();
+            
+            Scene scene = new Scene(parent);
+            
+            MenuController controller = loader.getController();
+            controller.setStage(stage);
+            controller.setScene(scene);
+            
+            stage.setTitle("TicTacToe");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //launch(args);
-        Game game= new Game("Toto", "Tata");
+        launch(args);
+        Game game= new Game();
         System.out.println(game.getBoard().toString());
         game.mark(0, 0);
         System.out.println(game.getBoard().toString());

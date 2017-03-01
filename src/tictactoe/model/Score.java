@@ -14,13 +14,13 @@ public class Score {
     private int parties;
     private int wins;
     private int looses;
-    private int exAequo;
+    private int equalities;
 
     public Score() {
-        this.parties = 0;
-        this.wins = 0;
-        this.looses = 0;
-        this.exAequo = 0;
+        parties = 0;
+        wins = 0;
+        looses = 0;
+        equalities = 0;
     }
 
     public int getParties() {
@@ -47,23 +47,23 @@ public class Score {
         this.looses = looses;
     }
 
-    public int getExAequo() {
-        return exAequo;
+    public int getEqualities() {
+        return equalities;
     }
 
-    public void setExAequo(int exAequo) {
-        this.exAequo = exAequo;
+    public void setEqualities(int equalities) {
+        this.equalities = equalities;
     }
 
     public void addWin() {
-        this.wins++;
+        wins++;
     }
 
     public void addLoose() {
-        this.looses++;
+        looses++;
     }
 
-    public void addExAequo() {
-        this.exAequo++;
+    public void addEqualities() {
+        equalities++;
     }
 }

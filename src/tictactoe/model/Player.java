@@ -14,9 +14,13 @@ public class Player {
     private String name;
     private Score score;
 
-    public Player(String name) {
-        this.name = name;
+    public Player() {
         this.score = new Score();
+    }
+
+    public Player(String name) {
+        this();
+        this.name = name;
     }
 
     public String getName() {
