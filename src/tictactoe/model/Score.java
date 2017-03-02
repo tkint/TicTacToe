@@ -12,14 +12,14 @@ package tictactoe.model;
 public class Score {
 
     private int parties;
-    private int wins;
-    private int looses;
+    private int victories;
+    private int defeats;
     private int equalities;
 
     public Score() {
         parties = 0;
-        wins = 0;
-        looses = 0;
+        victories = 0;
+        defeats = 0;
         equalities = 0;
     }
 
@@ -31,20 +31,20 @@ public class Score {
         this.parties = parties;
     }
 
-    public int getWins() {
-        return wins;
+    public int getVictories() {
+        return victories;
     }
 
-    public void setWins(int wins) {
-        this.wins = wins;
+    public void setVictories(int victories) {
+        this.victories = victories;
     }
 
-    public int getLooses() {
-        return looses;
+    public int getDefeats() {
+        return defeats;
     }
 
-    public void setLooses(int looses) {
-        this.looses = looses;
+    public void setDefeats(int defeats) {
+        this.defeats = defeats;
     }
 
     public int getEqualities() {
@@ -55,12 +55,12 @@ public class Score {
         this.equalities = equalities;
     }
 
-    public void addWin() {
-        wins++;
+    public void addVictory() {
+        victories++;
     }
 
-    public void addLoose() {
-        looses++;
+    public void addDefeat() {
+        defeats++;
     }
 
     public void addEqualities() {

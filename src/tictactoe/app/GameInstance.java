@@ -12,15 +12,15 @@ import tictactoe.model.Game;
  * @author Thomas
  */
 public class GameInstance {
-    
+
     private static GameInstance instance = null;
-    
+
     private Game game;
 
     private GameInstance() {
         game = new Game();
     }
-    
+
     public static GameInstance getInstance() {
         if (instance == null) {
             instance = new GameInstance();

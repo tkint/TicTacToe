@@ -24,18 +24,18 @@ import tictactoe.app.GameInstance;
  */
 public class PlayerChoiceController implements Initializable {
 
-    private Stage stage;
-    private Scene scene;
-    private Scene previousScene;
-    
-    private GameInstance gameInstance = GameInstance.getInstance();
-
     @FXML
     public TextField playerOne;
 
     @FXML
     public TextField playerTwo;
-
+    
+    private Stage stage;
+    private Scene scene;
+    private Scene previousScene;
+    
+    private GameInstance gameInstance = GameInstance.getInstance();
+    
     /**
      * Initializes the controller class.
      */

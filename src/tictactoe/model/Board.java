@@ -53,7 +53,7 @@ public class Board {
         int i = 0;
         boolean full = true;
         while (i < cells.size() && full) {
-            if (cells.get(i).getMark() != null) {
+            if (cells.get(i).getMark() == null) {
                 full = false;
             }
             i++;

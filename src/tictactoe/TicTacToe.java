@@ -54,18 +54,5 @@ public class TicTacToe extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        Game game= new Game();
-        System.out.println(game.getBoard().toString());
-        game.mark(0, 0);
-        System.out.println(game.getBoard().toString());
-        game.mark(1, 1);
-        System.out.println(game.getBoard().toString());
-        game.mark(1, 0);
-        System.out.println(game.getBoard().toString());
-        game.mark(2, 1);
-        System.out.println(game.getBoard().toString());
-        game.mark(2, 0);
-        System.out.println(game.getBoard().toString());
     }
-    
 }

@@ -68,14 +68,14 @@ public class Game {
         playerTwo.setName(playerTwoName);
     }
 
-    public void playerOneWin() {
-        playerOne.getScore().addWin();
-        playerTwo.getScore().addLoose();
+    public void playerOneVictory() {
+        playerOne.getScore().addVictory();
+        playerTwo.getScore().addDefeat();
     }
 
-    public void playerTwoWin() {
-        playerOne.getScore().addLoose();
-        playerTwo.getScore().addWin();
+    public void playerTwoVictory() {
+        playerOne.getScore().addDefeat();
+        playerTwo.getScore().addVictory();
     }
 
     public void equality() {
@@ -99,7 +99,10 @@ public class Game {
     public void mark(int x, int y) {
         board.getCell(x, y).setMark(turn);
         turn = !turn;
-        checkWin();
+    }
+
+    public Boolean getMark(int x, int y) {
+        return board.getCell(x, y).getMark();
     }
 
     private Cell getCell(int x, int y) {
@@ -109,10 +112,8 @@ public class Game {
     private boolean isColumnFull(int x) {
         boolean full = false;
         Boolean value = getCell(x, 0).getMark();
-        if (value != null) {
-            if (getCell(x, 1).getMark() == value && getCell(x, 2).getMark() == value) {
-                full = true;
-            }
+        if (value != null && getCell(x, 1).getMark() == value && getCell(x, 2).getMark() == value) {
+            full = true;
         }
         return full;
     }
@@ -120,40 +121,66 @@ public class Game {
     private boolean isRowFull(int y) {
         boolean full = false;
         Boolean value = getCell(0, y).getMark();
-        if (value != null) {
-            if (getCell(1, y).getMark() == value && getCell(2, y).getMark() == value) {
-                full = true;
-            }
+        if (value != null && getCell(1, y).getMark() == value && getCell(2, y).getMark() == value) {
+            full = true;
         }
         return full;
     }
 
-    private void checkWin() {
-        Boolean win = whoWins();
-        if (win != null) {
-            if (win) {
-                playerOneWin();
+    private boolean isDiagOneFull() {
+        boolean full = false;
+        Boolean value = getCell(0, 0).getMark();
+        if (value != null && getCell(1, 1).getMark() == value && getCell(2, 2).getMark() == value) {
+            full = true;
+        }
+        return full;
+    }
+    
+    private boolean isDiagTwoFull() {
+        boolean full = false;
+        Boolean value = getCell(0, 2).getMark();
+        if (value != null && getCell(1, 1).getMark() == value && getCell(2, 0).getMark() == value) {
+            full = true;
+        }
+        return full;
+    }
+
+    public int checkVictory() {
+        int state = 0;
+        Boolean victory = whoWins();
+        if (victory != null) {
+            if (victory) {
+                playerOneVictory();
+                state = 1;
             } else {
-                playerTwoWin();
+                playerTwoVictory();
+                state = 2;
             }
-            newParty();
         } else {
             if (board.isFull()) {
                 equality();
+                state = 3;
             }
         }
+        return state;
     }
 
     public Boolean whoWins() {
-        Boolean win = null;
-        for (int i = 0; i < 2; i++) {
+        Boolean victory = null;
+        for (int i = 0; i < 3; i++) {
             if (isColumnFull(i)) {
-                win = getCell(i, 0).getMark();
+                victory = getCell(i, 0).getMark();
             }
             if (isRowFull(i)) {
-                win = getCell(0, i).getMark();
+                victory = getCell(0, i).getMark();
             }
         }
-        return win;
+        if (isDiagOneFull()) {
+            victory = getCell(0, 0).getMark();
+        }
+        if (isDiagTwoFull()) {
+            victory = getCell(0, 2).getMark();
+        }
+        return victory;
     }
 }
